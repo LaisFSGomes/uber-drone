@@ -1,0 +1,41 @@
+<section class="cadastro">
+  <form class="text-center">
+    <div class="mb-3">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nome"
+          name="nome"
+          [(ngModel)]="drone.name"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="owner" class="form-label">Storage</label>
+        <select
+          id="owner"
+          class="form-select"
+          [(ngModel)]="drone.storage"
+          [ngModelOptions]="{ standalone: true }"
+        >
+          <option selected disabled>select the storage</option>
+          <option *ngFor="let storage of storages" value="{{ storage }}">
+            {{ storage }}
+          </option>
+        </select>
+      </div>
+      <label for="speed" class="form-label">Speed</label>
+      <input
+        type="number"
+        class="form-control"
+        id="speed"
+        name="speed"
+        [(ngModel)]="drone.speed"
+      />
+    </div>
+    <button type="submit" class="btn btn-dark" (click)="create()">
+      Submit
+    </button>
+  </form>
+</section>

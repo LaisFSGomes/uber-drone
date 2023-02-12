@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { StorageModule } from './storage/storage.module';
 import { AdministradorModule } from './administrador/administrador.module';
+import { DroneModule } from './drone/drone.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AdministradorModule } from './administrador/administrador.module';
     UserModule,
     StorageModule,
     AdministradorModule,
+    DroneModule,
   ],
   controllers: [AppController],
   providers: [AppService],

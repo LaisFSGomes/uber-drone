@@ -1,0 +1,16 @@
+<section id="table-users">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">E-mail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let adm of admList">
+        <td>{{ adm.name }}</td>
+        <td>{{ adm.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

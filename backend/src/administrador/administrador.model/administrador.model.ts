@@ -1,12 +1,12 @@
 import * as mongoose from 'mongoose';
 // export class AdministradorModel {}
 export const AdministradorSchema = new mongoose.Schema({
-  nome: String,
-  email: String,
-  senha: String,
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
 });
 export interface Administrador {
-  nome: string;
+  name: string;
   email: string;
-  senha: string;
+  password: string;
 }

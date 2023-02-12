@@ -10,6 +10,11 @@ import { RegisterUserComponent } from './features/register-user/register-user.co
 import { ListUserComponent } from './features/list-user/list-user.component';
 import { RegisterStorageComponent } from './features/register-storage/register-storage.component';
 import { ListStorageComponent } from './features/list-storage/list-storage.component';
+import { RegisterAdmComponent } from './features/register-adm/register-adm.component';
+import { ListAdmComponent } from './features/list-adm/list-adm.component';
+import { RegisterDroneComponent } from './features/register-drone/register-drone.component';
+import { ListDroneComponent } from './features/list-drone/list-drone.component';
+import { MapComponent } from './features/map/map.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,12 @@ import { ListStorageComponent } from './features/list-storage/list-storage.compo
     RegisterUserComponent,
     ListUserComponent,
     RegisterStorageComponent,
-    ListStorageComponent
+    ListStorageComponent,
+    RegisterAdmComponent,
+    ListAdmComponent,
+    RegisterDroneComponent,
+    ListDroneComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
