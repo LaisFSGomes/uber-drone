@@ -1,3 +1,4 @@
-#table-storage {
-  width: 90vw;
+#section-storage {
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
 }

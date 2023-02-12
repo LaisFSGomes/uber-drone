@@ -1,18 +1,13 @@
-<section id="table-users">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">Storage</th>
-        <th scope="col">Speed</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let drone of droneList">
-        <td>{{drone.name}}</td>
-        <td>{{drone.storage}}</td>
-        <td>{{drone.speed}}</td>
-      </tr>
-    </tbody>
-  </table>
+<section id="section-users">
+  <div *ngFor="let drone of droneList">
+    <div class="card w-80">
+      <div class="card-body">
+        <h5 class="card-title">{{ drone.name }}</h5>
+        <p class="card-text">{{ drone.storage }}</p>
+        <p class="card-text">
+          ({{ drone.speed }})
+        </p>
+      </div>
+    </div>
+  </div>
 </section>

@@ -1,5 +1,5 @@
-<section id="table-users">
-  <table class="table">
+<section id="section-users">
+  <!-- <table class="table">
     <thead>
       <tr>
         <th scope="col">Nome</th>
@@ -14,5 +14,17 @@
         <td>({{ user.coordinates.longitude }},{{ user.coordinates.latitude }})</td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
+  <div *ngFor="let user of usersList">
+    <div class="card w-80">
+      <div class="card-body">
+        <h5 class="card-title">{{ user.name }}</h5>
+        <p class="card-text">{{ user.email }}</p>
+        <p class="card-text">
+          ({{ user.coordinates.longitude }}, {{ user.coordinates.latitude }})
+        </p>
+        <a href="#" class="btn btn-primary">Order</a>
+      </div>
+    </div>
+  </div>
 </section>

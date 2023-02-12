@@ -1,5 +1,5 @@
-<section id="table-storage">
-  <table class="table">
+<section id="section-storage">
+  <!-- <table class="table">
     <thead>
       <tr>
         <th scope="col">Name</th>
@@ -14,5 +14,16 @@
         <td>({{ storage.coordinates.longitude }},{{ storage.coordinates.latitude }})</td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
+  <div *ngFor="let storage of storageList">
+    <div class="card w-80">
+      <div class="card-body">
+        <h5 class="card-title">{{ storage.name }}</h5>
+        <p class="card-text">{{ storage.owner }}</p>
+        <p class="card-text">
+          ({{ storage.coordinates.longitude }}, {{ storage.coordinates.latitude }})
+        </p>
+      </div>
+    </div>
+  </div>
 </section>

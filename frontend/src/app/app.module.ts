@@ -14,7 +14,6 @@ import { RegisterAdmComponent } from './features/register-adm/register-adm.compo
 import { ListAdmComponent } from './features/list-adm/list-adm.component';
 import { RegisterDroneComponent } from './features/register-drone/register-drone.component';
 import { ListDroneComponent } from './features/list-drone/list-drone.component';
-import { MapComponent } from './features/map/map.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import { MapComponent } from './features/map/map.component';
     ListAdmComponent,
     RegisterDroneComponent,
     ListDroneComponent,
-    MapComponent,
   ],
   imports: [
     BrowserModule,
