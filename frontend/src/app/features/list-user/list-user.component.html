@@ -1,0 +1,18 @@
+<section id="table-users">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Coordenadas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersList">
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>({{ user.coordinates.longitude }},{{ user.coordinates.latitude }})</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

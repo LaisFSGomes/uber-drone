@@ -1,0 +1,18 @@
+<section id="table-storage">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Owner</th>
+        <th scope="col">Coordinates</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let storage of storageList">
+        <td>{{storage.name}}</td>
+        <td>{{storage.owner}}</td>
+        <td>({{ storage.coordinates.longitude }},{{ storage.coordinates.latitude }})</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

@@ -1,0 +1,37 @@
+<section class="cadastro">
+  <form class="text-center">
+    <div class="mb-3">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nome"
+          name="nome"
+          [(ngModel)]="user.name"
+        />
+      </div>
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        [(ngModel)]="user.email"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="senha" class="form-label" >Password</label>
+      <input type="password" class="form-control" id="senha" name = "senha"[(ngModel)]="user.password" />
+    </div>
+    <div class="mb-3">
+      <label for="latitude" class="form-label">Latitude</label>
+      <input type="text" class="form-control" id="latitude" name="latitude" [(ngModel)]="user.coordinates.latitude" />
+    </div>
+    <div class="mb-3">
+      <label for="longitude" class="form-label">Longitude</label>
+      <input type="text" class="form-control" id="longitude" name="longitude" [(ngModel)]="user.coordinates.longitude"/>
+    </div>
+    <button type="submit" class="btn btn-dark " (click)="create()">Submit</button>
+  </form>
+</section>
