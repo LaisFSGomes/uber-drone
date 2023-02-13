@@ -1,3 +1,4 @@
+import { WebsocketService } from './../../service/websocket.service';
 import { AppComponent } from './../../app.component';
 import { userType } from '../../templates/usersType';
 import { Component } from '@angular/core';
@@ -19,16 +20,35 @@ export class RegisterUserComponent {
     },
   };
 
-  constructor(private userService: UserService, appComponent: AppComponent) {}
+  constructor(
+    private userService: UserService,
+    // private socket: WebsocketService,
+    private app: AppComponent
+  ) {}
 
   create() {
     this.userService.create(this.user).subscribe({
       next: (user) => {
-        alert(`usuário ${user.name} cadastrado com sucesso!`);
+        alert('usuário cadastrado com sucesso!');
+        this.user = {
+          name: '',
+          email: '',
+          password: '',
+          coordinates: {
+            latitude: 0,
+            longitude: 0,
+          },
+        };
       },
       error: (err) => {
         alert('Erro ao cadastrar usuário');
-      }
+      },
+      complete: () => {
+        this.app.getUsers();
+      },
+      // complete: () => {
+      //   this.socket.socket.emit('newUser', this.user);
+      // }
     });
   }
 }

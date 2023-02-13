@@ -1,3 +1,4 @@
+import { WebsocketService } from './service/websocket.service';
 import { RegisterUserComponent } from './features/register-user/register-user.component';
 import { DroneTypes } from './templates/droneTypes';
 import { StorageType } from './templates/storageTypes';
@@ -17,17 +18,23 @@ import * as Matboxgl from 'mapbox-gl';
 export class AppComponent implements OnInit {
   title = 'frontend';
   map!: Matboxgl.Map;
-  allUsers: userType[] = [];
+  public allUsers: userType[] = [];
   allStorages: StorageType[] = [];
   allDrones: DroneTypes[] = [];
+  eventData: any;
 
   constructor(
     private userService: UserService,
     private storageService: StorageService,
     private droneService: DroneService,
+    private socket: WebsocketService
   ) {}
 
   ngOnInit() {
+    // this.socket.socket.on('newUser', (data: any) => {
+    //   alert("aaa");
+    // });
+
     (Matboxgl as any).accessToken = environment.mapboxKey;
     this.map = new Matboxgl.Map({
       container: 'map',
@@ -37,6 +44,7 @@ export class AppComponent implements OnInit {
     });
 
     this.map.addControl(new Matboxgl.NavigationControl());
+    this.getLocation();
     this.getUsers();
     this.getStorages();
     this.getDrones();
@@ -52,20 +60,15 @@ export class AppComponent implements OnInit {
     const popup = new Matboxgl.Popup().setHTML(`
     <h5>${name}</h5>
     <p>${type}</p>
-    <p>(${longitude}, ${latitude})</p>
+    <p>(${latitude}, ${longitude})</p>
     `);
     const marker = new Matboxgl.Marker({
       color: type === 'user' ? 'blue' : type === 'storage' ? 'green' : 'red',
-      draggable: true,
+      // draggable: true,
     })
       .setLngLat([longitude, latitude])
       .setPopup(popup)
       .addTo(this.map);
-
-    marker.on('dragend', () => {
-      const lngLat = marker.getLngLat();
-      console.log(lngLat);
-    });
   }
   getUsers() {
     this.userService.list().subscribe({
@@ -117,5 +120,65 @@ export class AppComponent implements OnInit {
       },
       complete: () => {},
     });
+  }
+
+  addLineBetweenPointsOnMap(
+    latitude1: number,
+    longitude1: number,
+    latitude2: number,
+    longitude2: number,
+    id: string
+  ): void {
+    this.map.addSource(id, {
+      type: 'geojson',
+      data: {
+        type: 'Feature',
+        properties: {},
+        geometry: {
+          type: 'LineString',
+          coordinates: [
+            [longitude1, latitude1],
+            [longitude2, latitude2],
+          ],
+        },
+      }
+    });
+    this.map.addLayer({
+      id: id,
+      type: 'line',
+      source: id,
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      paint: {
+        'line-color': '#888',
+        'line-width': 8
+      }
+    });
+  }
+  removeLineBetweenPointsOnMap(id: string): void {
+    this.map.removeLayer(id);
+    this.map.removeSource(id);
+    alert("viagem concluída");
+  }
+  chageCenterMap(latitude: number, longitude: number): void {
+    this.map.flyTo({
+      center: [longitude, latitude],
+      essential: true,
+      zoom: 15,
+    });
+  }
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.chageCenterMap(
+          position.coords.latitude,
+          position.coords.longitude
+        );
+      });
+    } else {
+     this.chageCenterMap(-40.35501666717306, -3.6923042731622076);
+    }
   }
 }

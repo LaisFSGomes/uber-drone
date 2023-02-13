@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { StorageService } from 'src/app/service/storage.service';
 import { DroneService } from './../../service/drone.service';
 import { DroneTypes } from './../../templates/droneTypes';
@@ -19,7 +20,8 @@ export class RegisterDroneComponent {
 
   constructor(
     private droneService: DroneService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private app: AppComponent
   ) {}
 
   ngOnInit(): void {
@@ -31,8 +33,19 @@ export class RegisterDroneComponent {
   }
 
   create() {
-    this.droneService.create(this.drone).subscribe(() => {
-      alert('Drone cadastrado com sucesso!');
+    this.droneService.create(this.drone).subscribe({
+      next: (drone) => {
+        alert("Drone cadastrado com sucesso!");
+        this.drone = {
+          id: '',
+          name: '',
+          storage: '',
+          speed: 0,
+        };
+      },
+      complete: () => {
+        this.app.getDrones();
+      },
     });
   }
 }

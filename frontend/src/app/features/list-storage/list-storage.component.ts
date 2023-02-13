@@ -21,9 +21,6 @@ export class ListStorageComponent {
       error: (err) => {
         console.log("erro", err);
       },
-      complete: () => {
-        console.log(this.storageList);
-      }
     })
   }
 }

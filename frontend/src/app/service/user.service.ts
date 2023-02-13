@@ -18,5 +18,7 @@ export class UserService {
   list(): Observable<userType[]> {
     return this.http.get<userType[]>(`${this.API}users/`);
   }
-
+  getUser(id: string): Observable<userType> {
+    return this.http.get<userType>(`${this.API}${id}`);
+  }
 }

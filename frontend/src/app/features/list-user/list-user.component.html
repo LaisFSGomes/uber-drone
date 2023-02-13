@@ -7,7 +7,8 @@
         <p class="card-text">
           ({{ user.coordinates.longitude }}, {{ user.coordinates.latitude }})
         </p>
-        <a href="#" class="btn btn-primary">Order</a>
+        <button class="btn btn-primary" #buttonClicked (click)="orderMenorDistancia(user._id)"
+        >Order</button>
       </div>
     </div>
   </div>

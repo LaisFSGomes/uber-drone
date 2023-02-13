@@ -17,9 +17,14 @@ export class RegisterAdmComponent {
   constructor(private admService: AdministratorService) {}
 
   create() {
-    console.log(this.adm);
     this.admService.create(this.adm).subscribe(() => {
       alert('Administrador cadastrado com sucesso!');
+      this.adm = {
+        id:'',
+        name: '',
+        email: '',
+        password: '',
+      };
     });
   }
 }

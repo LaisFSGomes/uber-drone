@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { AdministratorService } from 'src/app/service/administrator.service';
 import { StorageType } from './../../templates/storageTypes';
 import { Component } from '@angular/core';
@@ -20,7 +21,8 @@ export class RegisterStorageComponent {
   owners: string[] = [];
   constructor(
     private storageService: StorageService,
-    private admService: AdministratorService
+    private admService: AdministratorService,
+    private app: AppComponent
   ) {}
   ngOnInit(): void {
     this.admService.list().subscribe({
@@ -31,9 +33,21 @@ export class RegisterStorageComponent {
   }
 
   create() {
-    console.log(this.storage);
-    this.storageService.create(this.storage).subscribe(() => {
-      alert('Armazém cadastrado com sucesso!');
+    this.storageService.create(this.storage).subscribe({
+      next: (storage) => {
+        alert('Armazém cadastrado com sucesso!');
+        this.storage = {
+          name: '',
+          owner: '',
+          coordinates: {
+            latitude: 0,
+            longitude: 0,
+          },
+        };
+      },
+      complete: () => {
+        this.app.getStorages();
+      },
     });
   }
 }

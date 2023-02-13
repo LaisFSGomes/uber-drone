@@ -19,9 +19,6 @@ export class ListAdmComponent {
         },
         error: (err) => {
           console.log(err);
-        },
-        complete: () => {
-          console.log(this.admList);
         }
       })
     }
